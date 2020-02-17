@@ -1,22 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import TestPage from '@/pages/test/TestPage'
+import test from '@/pages/Lorico/test'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/test',
-      name: 'Page.Test',
-      component: TestPage
-    }
+  routes: [{
+    path: '/',
+    name: 'HelloWorld',
+    component: HelloWorld
+  }, {
+    path: '/lorico',
+    name: 'Page.Lorico',
+    component: test
+  }
   ]
 })

@@ -1,0 +1,126 @@
+.test-page{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 200px;
+    position: relative;
+}
+
+.test-page .item{
+    width: 49.5%; 
+    box-sizing: border-box;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #DCDCDC;
+    padding: 0;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item > header {
+    padding: 10px;
+}
+
+.test-page .item > .item-body {
+    display: flex;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.item > .item-body > .item-image {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    border-right: 1px solid #DCDCDC;
+    justify-content: center;
+    align-items: center;
+}
+
+.item > .item-body > .item-image > figure {
+    padding: 10px;
+    margin: 0;
+    display: inline;
+}
+
+.item > .item-body > .item-details{
+    display: flex;
+    flex : 1;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+.item > .item-body > .item-details >header{
+    margin-bottom: 20px;
+}
+.item > .item-body > .item-details >.item-details-body{
+    margin-bottom: 40px;
+}
+ .test-page .item > header{
+    border-bottom: 1px solid #DCDCDC;
+    font-size: 16px;
+    display: flex;
+    justify-content:space-between;
+ }
+  
+.test-page .item img {
+    display: block;
+    width: 100%;
+}
+
+.test-page .item ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.test-page .item li{
+    padding: 0;
+}
+
+.test-page .item .category{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.test-page .item .sal{
+    color: blue;
+    font-size: 14px;
+}
+
+
+.test-page .item .hide{
+    color: purple;
+    font-size: 14px;
+}
+
+.test-page .item .negsala{
+    color: green;
+    font-size: 14px;
+}
+
+
+.test-page .item .cnegsala{
+    color: red;
+    font-size: 14px;
+}
+
+.test-page .item .type {
+    color: gray;
+    font-size: 12px;
+}
+
+.test-page .item .city {
+    color: gray;
+    font-size: 12px;
+}
+
+.test-page .item .appneed{
+    color: gray;
+    font-size: 12px;
+}
+
+.test-page .item .view{
+    color: gray;
+    font-size: 14px;
+}
