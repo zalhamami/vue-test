@@ -1,6 +1,7 @@
 <template>
   <div class="test-page">
     Test Get
+    <br>
     <input v-model="input" type="text">
     <input v-model="user.name" type="text">
     <input v-model="user.dateOfBirth" type="text">
@@ -43,11 +44,10 @@ export default {
     //     console.log(response)
     //     this.jobs = response.data.Data
     //   })
-    const response = await axios.get('https://api.jobs.heikaku.com/v1/job?page_size=5')
+    const response = await axios.get('https://api.jobs.heikaku.com/v1/job')
     this.jobs = response.data.Data
   }
 }
 </script>
 
-<style src="@/assets/css/main.css">
-</style>
+<style src="@/assets/css/main.css"></style>
