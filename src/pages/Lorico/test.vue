@@ -1,6 +1,13 @@
 <template>
- <div class="test-page">
-    <div class = "item" v-for="job in jobs" :key="job.Id" >
+<div class="text-page">
+  <div class ="search">
+    <center>
+      <input class ="textsearch" type="text" v-model="search" placeholder="Posisi Jabatan Yang Dicari..." @change="searchJob">
+      <input class ="btn-submit" type="submit" value="search">
+    </center> 
+  </div>
+  <div class="box">
+    <div class = "item" v-for="job in jobs" :key="job.Id">
       <header>{{ job.Merchant.Name }}</header>
       <section class="item-body">
         <div class="item-image">
@@ -10,9 +17,9 @@
         </div>
         <div class="item-details">
           <header>
-            <div class = "category"> {{ job.Merchant.Category }} </div>
+            <div class = "category"> {{ job.Position }} </div>
             <div class = "sal" v-if="job.HideSalary== true"> Gaji Dirahasiakan</div>
-            <div class = "hide" v-else>{{job.MinimumSalary}}-{{job.MaximumSalary}}</div>
+            <div class = "hide" v-else>Rp.{{job.MinimumSalary}}-Rp.{{job.MaximumSalary}}</div>
             <div class = "negsala" v-if="job.NegotiableSalary== 1">Gaji Dapat di Negosiasi</div>
             <div class = "cnegsala" v-else>Gaji Tidak dapat di Negosiasi</div>
        
@@ -28,6 +35,7 @@
         </div>
       </section>
     </div>
+    </div>
   </div>
 </template>
 
@@ -37,7 +45,8 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      jobs: []
+      jobs: [],
+      search: ""
     }
   },
   async created () {
@@ -48,6 +57,12 @@ export default {
     // })
     const response = await axios.get('https://api.jobs.heikaku.com/v1/job')
     this.jobs = response.data.Data
+  },
+  methods : {
+    async searchJob(){
+      const response = await axios.get('https://api.jobs.heikaku.com/v1/job?keyword='+this.search)
+      this.jobs = response.data.Data
+    }
   }
 }
 </script>
