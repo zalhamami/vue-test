@@ -3,8 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 
 Vue.config.productionTip = false
+
+const core = axios.create({
+  baseURL: 'https://api.heikaku.com/v1/'
+})
+const jobs = axios.create({
+  baseURL: 'https://api.jobs.heikaku.com/v1/'
+})
+
+Vue.prototype.$core = core
+Vue.prototype.$jobs = jobs
 
 /* eslint-disable no-new */
 new Vue({
