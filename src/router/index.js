@@ -20,7 +20,7 @@ export default new Router({
       component: TestPage
     },
     {
-      path: '/gold',
+      path: '/job-search',
       name: 'Page.Gold',
       component: testlah
     }
