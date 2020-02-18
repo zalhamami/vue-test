@@ -1,25 +1,5 @@
 <template>
   <div class="test-page">
-    <!-- Test Get
-    <br>
-    <input v-model="input" type="text">
-    <input v-model="user.name" type="text">
-    <input v-model="user.dateOfBirth" type="text">
-    <input v-model="user.age" type="text">
-    <p>
-      {{ input }}
-    </p>
-    <p>
-      Name: {{ user.name }}
-    </p>
-    <p>
-      Age: {{ user.age }}
-    </p>
-    <ul>
-      <li v-for="item in jobs" :key="item.Id">
-        {{ item.Position }}
-      </li>
-    </ul>-->
     <div class="head">
         <input type="text" placeholder="Search..." v-model="search" @change="searchJob" class="txtbox">
         <input type="Submit" value="Search" class="sbmtbtn">
@@ -71,11 +51,6 @@ export default {
     }
   },
   async created () {
-    // const response = axios.get('https://api.jobs.heikaku.com/v1/category?page_size=5')
-    //   .then((response) => {
-    //     console.log(response)
-    //     this.jobs = response.data.Data
-    //   })
     const response = await axios.get('https://api.jobs.heikaku.com/v1/job')
     this.jobs = response.data.Data
   },

@@ -3,8 +3,7 @@
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
-      <li>
-        <a
+      <li>        <a
           href="https://vuejs.org"
           target="_blank"
         >

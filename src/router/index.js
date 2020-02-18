@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import test from '@/pages/Lorico/test'
 import TestPage from '@/pages/test/TestPage'
 import testlah from '@/pages/gold/testlah'
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/test',
       name: 'Page.Test',
       component: TestPage
+    },
+    {
+      path: '/lorico',
+      name: 'Page.Lorico',
+      component: test
     },
     {
       path: '/job-search',
