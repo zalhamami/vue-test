@@ -10,8 +10,7 @@
       <ul>
         <li v-for="category in jobCategories" :key="category.Id">
           {{ category.Name }}
-        </li>
-      </ul>
+        </li>      </ul>
     </div>
   </div>
 </template>
