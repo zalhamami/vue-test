@@ -1,12 +1,120 @@
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+body{
+  margin :0;
+}
+.searchbar{
+  background-color: white;
+  border-bottom: 1px solid #DCDCDC ;
+  padding :20px;
+  .text-search{
+   padding: 10px;
+   padding-right: 70px;
+   padding-left: 70px;
+   border-radius: 7px;
+   font-size: 14px;
+  }
+  .button{
+    background-color: blue;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+    color: white;
+  }
 }
 
-.flex {
+
+.box {
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 0 100px;  
+    .item {
+      width: 42.5%;
+      box-sizing: border-box;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      border: 1px solid #DCDCDC;
+      padding: 0;
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      >.item-body {
+        display: flex;
+        justify-content: space-around;
+        flex: 1;
+      }
+      >header {
+        border-bottom: 1px solid #DCDCDC;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        display : inline-block;  
+      }
+      .photo{
+        height: 20px;
+        width: 25px;
+        border-radius: 5px;
+        float: left;
+        margin-right: 10px;
+      }    
+      .partner {
+        float: left;
+      }
+      .rate{
+        float: right;
+        color: gold;
+      }
+      .checked{
+        color: gold;
+        padding-right: 2px;
+      }
+      .name{
+        font-weight: bold;
+        margin-bottom: 15px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+      .city{
+        color: gray;
+        margin-bottom: 15px;
+      }
+      .hour{
+        color:gray;
+        font-size: 12px;
+        .close{
+          color:red;
+          font-size: 12px;
+        }
+        .open{
+          color: green;
+          font-size: 12px;
+        }
+      }
+      .view{
+        color:grey;
+        margin-top: auto;
+      }
+      
+  }
+}
+
+.item {
+	>.item-body {
+      >img{
+        display: block;
+        width: 207px;
+        height: 207px;
+        border-bottom-left-radius: 15px;
+    }
+    
+		>.item-details {
+      display: flex;
+      position: relative;
+			flex: 1;
+			flex-direction: column;
+			padding: 20px 20px;
+		}
+	}
 }
