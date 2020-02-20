@@ -1,18 +1,19 @@
 <template>
   <div class="test-page">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class = "searchbar">
       <center>
-      <input class="text-search" type="text" v-model="search" placeholder="Nama Tempat Yang dicari" @change="searching" >
-      <input class="button" type="submit" value ="cari">
+       <form action="" @submit.prevent>
+        <input class="text-search" type="text" v-model="search" placeholder="Nama Tempat Yang dicari" >
+        <input class="button" type="submit" value ="cari" @click="searching">
+      </form>
       </center>
     </div>
     <div class= "box">
-        <div class = "item" v-for="place in places" :key="place.Id">
+        <div class="item" v-for="place in places" :key="place.Id">
         <header>
             <img :src="place.Company.Photo.Url" class="photo">
             <div class = "partner">{{ place.Company.Name }}</div>
-            <div class = "non-rate" v-if="place.Rating == null"> </div>
+            <div class = "non-rate" v-if="!place.Rating"> </div>
             <div class = "rate" v-else> <span class="fa fa-star checked"></span>{{ place.Rating }}/{{ place.RatingCount }} </div>
         </header>
             <div class="item-body">
@@ -20,9 +21,9 @@
                <div class="item-details">
                    <div class="name">{{ place.Name }} </div>
                    <div class="city">{{ place.City.Name }} </div>
-                   <div class="hour">{{ moment (place.Times[0].OpenHour).format('LT') }} - {{ moment (place.Times[0].CloseHour).format('LT') }}
-                      <span class="close" v-if="checkHourInfo(place.Times)"> Close Now </span>
-                      <span class="open" v-else>Open Now</span>
+                   <div class="hour">
+                     <span>{{ getOpenHourInformation(place.Times, 'time') }}</span>
+                     <span>{{ getOpenHourInformation(place.Times) }}</span> 
                    </div>
                    <div class="view"> Dilihat: {{ place.Summary.View}} Orang </div>
                </div>
@@ -32,13 +33,12 @@
   </div>
 </template>
 <script>
-var moment = require('moment')
+import moment from 'moment'
 moment.locale('id')
 export default {
   data () {
     return {
       places: [],
-      moment: moment,
       search: ''
     }
   },
@@ -46,9 +46,37 @@ export default {
     const placeResponse = await this.$core.get('place')
     this.places = placeResponse.data.Data
   },
+
   methods: {
+    getOpenHourInformation (times, type = null) {
+      const currentDate = new Date()
+      const currentDay = currentDate.getDay()
+      const timeObject = times.find(x => x.TimeId === currentDay)
+      if (!timeObject) return
+      const now = moment().format('HH:mm')
+      const openHour = moment(timeObject.OpenHour).format('HH:mm')
+      const closeHour = moment(timeObject.CloseHour).format('HH:mm')
+      if (type == 'time') {
+        return `${openHour} - ${closeHour}`
+      }
+      if (now > openHour && now < closeHour) {
+        return 'Open Now'
+      }
+      return 'Close Now'
+
+    },
     checkHourInfo (times) {
-      return moment().format('LT') > moment(times[0].CloseHour).format('LT')
+      return moment().format('LT') > moment(times[0].OpenHour).format('LT') && moment().format('LT') < moment(times[0].CloseHour).format('LT')
+    },
+    openHourInfo (times) {
+      return moment(times[0].OpenHour).format('LT')
+    },
+
+    closeHourInfo (times) {
+      return moment(times[0].CloseHour).format('LT')
+    },
+    dayInfo (times) {
+      return moment(times[0].TimeOfUse.Name).format('dddd')
     },
     async searching () {
       const placeResponse = await this.$core.get('place?keyword=' + this.search)
