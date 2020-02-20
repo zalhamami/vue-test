@@ -18,3 +18,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.category-list {
+  li {
+    display: inline-block;
+    padding: 1.5rem 2rem;
+    background-color: lightseagreen;
+    color: white;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+}
+</style>
