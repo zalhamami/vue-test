@@ -65,16 +65,6 @@ export default {
       return 'Close Now'
 
     },
-    openHourInfo (times) {
-      return moment(times[0].OpenHour).format('LT')
-    },
-
-    closeHourInfo (times) {
-      return moment(times[0].CloseHour).format('LT')
-    },
-    dayInfo (times) {
-      return moment(times[0].TimeOfUse.Name).format('dddd')
-    },
     async searching () {
       const placeResponse = await this.$core.get('place?keyword=' + this.search)
       this.places = placeResponse.data.Data
