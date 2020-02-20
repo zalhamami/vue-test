@@ -12,9 +12,9 @@
         <div class="item" v-for="place in places" :key="place.Id">
         <header>
             <img :src="place.Company.Photo.Url" class="photo">
-            <div class = "partner">{{ place.Company.Name }}</div>
-            <div class = "non-rate" v-if="!place.Rating"> </div>
-            <div class = "rate" v-else> <span class="fa fa-star checked"></span>{{ place.Rating }}/{{ place.RatingCount }} </div>
+            <div class="partner">{{ place.Company.Name }}</div>
+            <div class="non-rate" v-if="!place.Rating"> </div>
+            <div class="rate" v-else> <span class="fa fa-star checked"></span>{{ place.Rating }}/{{ place.RatingCount }} </div>
         </header>
             <div class="item-body">
                    <img :src="place.Photos[0].Url">
@@ -64,9 +64,6 @@ export default {
       }
       return 'Close Now'
 
-    },
-    checkHourInfo (times) {
-      return moment().format('LT') > moment(times[0].OpenHour).format('LT') && moment().format('LT') < moment(times[0].CloseHour).format('LT')
     },
     openHourInfo (times) {
       return moment(times[0].OpenHour).format('LT')
