@@ -4,7 +4,7 @@
       <div class="search-core">
         <form action="" @submit.prevent>
           <input type="text" placeholder="Type here..." class="txt-search" v-model="search">
-          <input type="submit" class="btn-search" @click="searchMethod">
+          <input type="submit" class="btn-search" @click="fetchData">
         </form>
       </div>
     </div>
@@ -58,8 +58,7 @@ export default {
     }
   },
   async created () {
-    const dealRespond = await this.$core.get('deal')
-    this.deals = dealRespond.data.Data
+    await this.fetchData()
   },
   methods: {
     getDiscount (price, priceActual) {
@@ -71,7 +70,7 @@ export default {
     formatNumber (number) {
       return numeral(number).format('0,0')
     },
-    async searchMethod () {
+    async fetchData () {
       const dealRespond = await this.$core.get('deal?keyword=' + this.search)
       this.deals = dealRespond.data.Data
     }
