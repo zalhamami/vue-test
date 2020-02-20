@@ -2,32 +2,26 @@
   <div class="test-page">
     <p>Heading in the universe</p>
     <div class="flex">
-      <ul>
-        <li v-for="category in categories" :key="category.Id">
-          {{ category.Name }}
-        </li>
-      </ul>
-      <ul>
-        <li v-for="category in jobCategories" :key="category.Id">
-          {{ category.Name }}
-        </li>      </ul>
+      <category-list :data="categories" />
     </div>
   </div>
 </template>
 
 <script>
+import CategoryList from '@/components/List/CategoryList'
+
 export default {
+  components: {
+    CategoryList
+  },
   data () {
     return {
-      categories: [],
-      jobCategories: []
+      categories: []
     }
   },
   async created () {
     const categoryResponse = await this.$core.get('category')
     this.categories = categoryResponse.data.Data
-    const jobCategoryResponse = await this.$jobs.get('category')
-    this.jobCategories = jobCategoryResponse.data.Data
   }
 }
 </script>

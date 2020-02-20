@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.coupon-page{
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-family: 'Roboto';
+    .box{
+        margin: 10px;
+        width: 500px;
+        height: 250px;
+        border-radius: 20px;
+        border: 2px solid lightgray;
+        box-shadow: 2px 4px 2px -1px lightgray;
+        transition: 0.4s ease;
+        &:hover{
+            box-shadow: none;
+        }
+        .box-header{
+            width: 100%;
+            height: 20%;
+            border-bottom: 2px solid lightgray;
+            display: flex;
+            .header-container{
+                width: 15%;
+                height: 100%;
+                .header-logo{
+                    margin-top: 12px;
+                    margin-left: 25px;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .header-name{
+                width: 65%;
+                height: 100%;
+                p{
+                    color: black;
+                    padding-top: 2px;
+                    position: absolute;
+                    transition: 0.2s ease;
+                    &:hover{
+                        color: rgb(134, 134, 209);
+                    }
+                }
+            }
+            .header-rating{
+                width: 20%;
+                height: 100%;
+                .star{
+                    margin-top: 15px;
+                    float: left;
+                }
+                .rate{
+                    color: gold;
+                    font-size: 14px;
+                    padding-top: 6px;
+                    padding-left: 30px;
+                }
+            }
+        }
+        .box-img{
+            width: 45%;
+            height: 80%;
+            border-right: 2px solid lightgray;
+            border-bottom-left-radius: 20px;
+            float: left;
+            overflow: hidden;
+            background-color: rgb(173, 172, 172);
+            cursor: pointer;
+            .found{
+                width: 110%;
+                height: 120%;
+                border-bottom-left-radius: 30px;
+            }
+            .not-found{
+                margin-top: 18%;
+                margin-left: 25%;
+                width: 50%;
+                height: auto;
+            }
+            .disc{
+                width: 60px;
+                height: 40px;
+                background-color: rgb(201, 11, 11);
+                position: absolute;
+                margin-left: 165px;
+                margin-top: 20px;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                .persen{
+                    padding-top: 10px;
+                    padding-left: 15px;
+                    color: white;
+                }
+            }
+        }
+        .box-info{
+            width: calc(55% - 2px);
+            height: 65%;
+            float: right;
+            cursor: pointer;
+            transition: 0.2s ease;
+            &:hover{
+                background-color: rgba(245, 245, 245, 0.692);
+            }
+            p{
+                font-size: 14px;
+                padding-left: 10px;
+            }
+            section{
+                color: gray;
+                font-size: 14px;
+                padding-left: 10px;
+                line-height: 20px;
+            }
+            .price{
+                color: red;
+                font-size: 15px;
+            }
+        }
+        .box-seen{
+            width: calc(55% - 2px);
+            height: calc(15% - 2.5px);
+            float: right;
+            border-bottom-right-radius: 10px;
+            background-color: rgba(245, 245, 245, 0.692);
+            cursor: pointer;
+            section{
+                padding-top: 10px;
+                font-size: 14px;
+                padding-left: 10px;
+            }
+        }
+    }
+    .search-container{
+        width: 100%;
+        height: 50px;
+        .search-core{
+            margin: 0 auto;
+            width: 50%;
+            height: 100%;
+            .txt-search{
+                width: 50%;
+                padding-left: 10px;
+                margin-top: 1.5%;
+                margin-left: 17%;
+                height: 20px;
+                border-radius: 10px;
+                border: 2px solid lightgray;
+                box-shadow: 2px 4px 2px -1px lightgray;
+                transition: 0.2s ease;
+                outline: 0;
+                &:focus{
+                    border-color:  rgb(59, 59, 184);
+                    box-shadow: none;
+                }
+            }
+            .btn-search{
+                width: 70px;
+                height: 30px;
+                background-color: rgb(59, 59, 184);
+                color: white;
+                cursor: pointer;
+                transition: 0.2s ease;
+                &:hover{
+                    background-color: rgb(81, 81, 204);
+                }
+            }
+        }
+    }
+}
