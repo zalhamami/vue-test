@@ -2,15 +2,17 @@
   <div class="coupon-page">
     <div class="search-container">
       <div class="search-core">
-        <input type="text" placeholder="Type here..." class="txt-search" v-model="search" @change="searchMethod">
-        <input type="submit" class="btn-search">
+        <form action="" @submit.prevent>
+          <input type="text" placeholder="Type here..." class="txt-search" v-model="search">
+          <input type="submit" class="btn-search" @click="searchMethod">
+        </form>
       </div>
     </div>
-    <div class="box" v-for="deal in categories" :key="deal.Id">
+    <div class="box" v-for="deal in deals" :key="deal.Id">
       <div class="box-header">
         <div class="header-container">
           <div class="header-logo">
-            <img :src="deal.Company.Photo.Url" alt="" v-if="deal.Company.Photo != null">
+            <img :src="deal.Company.Photo.Url" alt="" v-if="deal.Company.Photo">
             <img src="@/assets/img/error.png" alt="" v-else>
           </div>
         </div>
@@ -26,7 +28,7 @@
         <div class="disc" v-if="deal.Price != 0">
           <section class="persen"><b>{{ getDiscount(deal.Price, deal.PriceActual) }}%</b></section>
         </div>
-        <img :src="deal.Photos[0].Url" alt="" v-if="deal.Photos != null" class="found">
+        <img :src="deal.Photos[0].Url" alt="" v-if="deal.Photos" class="found">
         <img src="@/assets/img/error.png" alt="" v-else class="not-found">
       </div>
       <div class="box-info">
@@ -51,18 +53,13 @@ moment.locale('id')
 export default {
   data () {
     return {
-      moment: moment,
-      numeral: numeral,
-      categories: [],
-      jobCategories: [],
+      deals: [],
       search: ''
     }
   },
   async created () {
-    const categoryResponse = await this.$core.get('deal')
-    this.categories = categoryResponse.data.Data
-    const jobCategoryResponse = await this.$jobs.get('job')
-    this.jobCategories = jobCategoryResponse.data.Data
+    const dealRespond = await this.$core.get('deal')
+    this.deals = dealRespond.data.Data
   },
   methods: {
     getDiscount (price, priceActual) {
@@ -75,8 +72,8 @@ export default {
       return numeral(number).format('0,0')
     },
     async searchMethod () {
-      const categoryResponse = await this.$core.get('deal?keyword=' + this.search)
-      this.categories = categoryResponse.data.Data
+      const dealRespond = await this.$core.get('deal?keyword=' + this.search)
+      this.deals = dealRespond.data.Data
     }
   }
 }
