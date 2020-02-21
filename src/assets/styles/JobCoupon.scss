@@ -3,11 +3,15 @@
 .coupon-page{
     margin-left: 10%;
     margin-right: 10%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     font-family: 'Roboto';
-    .box{
+    .content-wrapper{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .deal-card{
         margin: 10px;
         width: 500px;
         height: 250px;
@@ -55,13 +59,13 @@
                 width: 20%;
                 height: 100%;
                 .star{
-                    margin-top: 15px;
+                    margin-top: 13px;
                     float: left;
                 }
                 .rate{
                     color: gold;
                     font-size: 14px;
-                    padding-top: 6px;
+                    padding-top: 5px;
                     padding-left: 30px;
                 }
             }
@@ -73,7 +77,7 @@
             border-bottom-left-radius: 20px;
             float: left;
             overflow: hidden;
-            background-color: rgb(173, 172, 172);
+            background-color: rgb(218, 218, 218);
             cursor: pointer;
             .found{
                 width: 110%;
@@ -151,29 +155,76 @@
                 width: 50%;
                 padding-left: 10px;
                 margin-top: 1.5%;
-                margin-left: 17%;
+                margin-left: 19%;
                 height: 20px;
                 border-radius: 10px;
-                border: 2px solid lightgray;
-                box-shadow: 2px 4px 2px -1px lightgray;
+                border: 1px solid lightgray;
+                box-shadow: 2px 4px 2px -3px lightgray;
                 transition: 0.2s ease;
                 outline: 0;
                 &:focus{
-                    border-color:  rgb(59, 59, 184);
+                    border: 1px solid rgb(93, 93, 240);
+                    box-shadow: none;
+                }
+                &:hover{
                     box-shadow: none;
                 }
             }
             .btn-search{
                 width: 70px;
                 height: 30px;
-                background-color: rgb(59, 59, 184);
+                border: transparent;
+                border-top-left-radius: 10px;
+                border-bottom-right-radius: 10px;;
+                background-color: rgb(93, 93, 240);
+                box-shadow: 2px 4px 2px 0px lightgray;
                 color: white;
                 cursor: pointer;
                 transition: 0.2s ease;
                 &:hover{
-                    background-color: rgb(81, 81, 204);
+                    background-color: rgb(41, 41, 155);
+                    box-shadow: none;
+                    border-top-right-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    border-top-left-radius: 0px;
+                    border-bottom-right-radius: 0px;
                 }
             }
+        }
+    }
+    .page-container{
+        margin: 0 auto;
+        width: 500px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        .page-btn{
+            width: 70%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            ul{
+                li{
+                    display: inline-block;
+                    a{
+                        padding: 3px 8px;
+                        text-decoration: none;
+                        border: 1px solid lightgray;
+                        border-radius: 5px;
+                        color: rgb(93, 93, 240);
+                        margin: 2px;
+                        transition: 0.4s ease;
+                        &.active{
+                            background-color: rgb(93, 93, 240);
+                            color: white;
+                            border: 1px solid white;
+                         }
+                         &:hover{
+                            border-color: rgb(93, 93, 240);
+                         }
+                    }
+                }
+            }            
         }
     }
 }
