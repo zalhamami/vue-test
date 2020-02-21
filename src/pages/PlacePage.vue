@@ -9,33 +9,25 @@
       </center>
     </div>
     <div class= "box">
-        <div class="item" v-for="place in places" :key="place.Id">
-        <header>
-            <img :src="place.Company.Photo.Url" class="photo">
-            <div class="partner">{{ place.Company.Name }}</div>
-            <div class="non-rate" v-if="!place.Rating"> </div>
-            <div class="rate" v-else> <span class="fa fa-star checked"></span>{{ place.Rating }}/{{ place.RatingCount }} </div>
-        </header>
-            <div class="item-body">
-                   <img :src="place.Photos[0].Url">
-               <div class="item-details">
-                   <div class="name">{{ place.Name }} </div>
-                   <div class="city">{{ place.City.Name }} </div>
-                   <div class="hour">
-                     <span>{{ getOpenHourInformation(place.Times, 'time') }}</span>
-                     <span>{{ getOpenHourInformation(place.Times) }}</span> 
-                   </div>
-                   <div class="view"> Dilihat: {{ place.Summary.View}} Orang </div>
-               </div>
-            </div>
+        <div class="item">
+          <place-card v-for="place in places.Data" :key="place.Id" :data="place"></place-card>
         </div>
+    </div>
+    <div class ="paginate">
+      <ul>
+       <li>
+         <a href ="#"  v-for="place in places.Meta.TotalPage" :key="place" @click="paging(place)">{{ place }} </a>
+       </li>
+      </ul>
     </div>
   </div>
 </template>
 <script>
-import moment from 'moment'
-moment.locale('id')
+import PlaceCard from '@/components/List/PlaceCard'
 export default {
+  components: {
+    PlaceCard
+  },
   data () {
     return {
       places: [],
@@ -44,30 +36,16 @@ export default {
   },
   async created () {
     const placeResponse = await this.$core.get('place')
-    this.places = placeResponse.data.Data
+    this.places = placeResponse.data
   },
-
   methods: {
-    getOpenHourInformation (times, type = null) {
-      const currentDate = new Date()
-      const currentDay = currentDate.getDay()
-      const timeObject = times.find(x => x.TimeId === currentDay)
-      if (!timeObject) return
-      const now = moment().format('HH:mm')
-      const openHour = moment(timeObject.OpenHour).format('HH:mm')
-      const closeHour = moment(timeObject.CloseHour).format('HH:mm')
-      if (type == 'time') {
-        return `${openHour} - ${closeHour}`
-      }
-      if (now > openHour && now < closeHour) {
-        return 'Open Now'
-      }
-      return 'Close Now'
-
-    },
     async searching () {
-      const placeResponse = await this.$core.get('place?keyword=' + this.search)
-      this.places = placeResponse.data.Data
+      const placeResponse = await this.$core.get('place?page_size=25&keyword=' + this.search)
+      this.places = placeResponse.data
+    },
+    async paging (page) {
+      const placeResponse = await this.$core.get('place?page_size=25&page_position='+ page + '&keyword=' + this.search)
+      this.places = placeResponse.data
     }
   }
 }
